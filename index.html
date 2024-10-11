@@ -10,8 +10,9 @@
             margin: 0;
             padding: 0;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
+            height: 100vh; /* Ajustamos la altura al 100% del viewport */
             background-color: #1b1b1b;
             background-image: url('/mnt/data/image.png'); /* Imagen de fondo */
             background-size: cover;
@@ -22,15 +23,18 @@
         h1 {
             margin: 20px 0;
             color: #ffffff;
+            text-align: center; /* Aseguramos que el título esté centrado */
         }
 
-        /* Mejora la distribución de los mapas */
+        /* Contenedor centrado */
         .container {
             display: flex;
             justify-content: center; /* Alinea al centro horizontalmente */
             gap: 20px; /* Espacio entre los mapas */
             padding: 20px;
             flex-wrap: wrap; /* Permite que los elementos se ajusten en una nueva fila si es necesario */
+            max-width: 90%; /* Limita el ancho máximo del contenedor */
+            align-items: center; /* Centra los mapas verticalmente */
         }
 
         .map-option {
@@ -41,9 +45,9 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             cursor: pointer;
             width: 220px; /* Asegura que todos los mapas tengan el mismo ancho */
+            text-align: center;
         }
 
-        /* Reducimos el tamaño del título de cada mapa */
         .map-option h2 {
             font-size: 16px; /* Tamaño reducido */
             margin: 10px 0;
@@ -88,12 +92,12 @@
         /* Estilo del botón para que sea una X más grande y mejor posicionada */
         .close-btn {
             position: absolute;
-            top: 25px;  /* Ajustamos para que esté más centrado */
+            top: 25px;
             right: 25px;
             background-color: transparent;
             color: #fff;
             border: none;
-            font-size: 35px;  /* Aumentamos el tamaño de la X */
+            font-size: 35px;
             cursor: pointer;
             font-weight: bold;
         }
