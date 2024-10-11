@@ -12,15 +12,11 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            /* Aquí puedes elegir entre usar un color de fondo o una imagen */
-            /* Color de fondo */
-            background-color: #e0e0e0; /* Cambia este color si prefieres otro */
-
-            /* Imagen de fondo (opcional) */
-            background-image: url('ruta/a/tu-imagen.jpg'); /* Cambia la ruta de la imagen */
-            background-size: cover; /* Para que la imagen cubra todo el fondo */
-            background-position: center; /* Centrar la imagen de fondo */
-            background-attachment: fixed; /* Para que el fondo no se desplace al hacer scroll */
+            background-color: #1b1b1b;
+            background-image: url('ruta/a/tu-imagen.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
         }
 
         h1 {
@@ -46,6 +42,12 @@
             cursor: pointer;
         }
 
+        /* Reducimos el tamaño del título de cada mapa */
+        .map-option h2 {
+            font-size: 16px; /* Tamaño reducido */
+            margin: 10px 0;
+        }
+
         iframe {
             width: 100%;
             height: 200px;
@@ -54,7 +56,7 @@
 
         /* Estilos para el modal */
         .modal {
-            display: none; /* Oculto por defecto */
+            display: none;
             position: fixed;
             z-index: 1000;
             left: 0;
@@ -69,27 +71,34 @@
         .modal-content {
             position: relative;
             background-color: white;
-            padding: 20px;
+            padding: 0;
             border-radius: 10px;
-            max-width: 90%;
-            max-height: 90%;
+            width: 100%;
+            height: 100%;
         }
 
+        /* Hacemos que el iframe cubra toda la pantalla */
         .modal-content iframe {
             width: 100%;
-            height: 500px; /* Tamaño del iframe en el modal */
+            height: 100%;
+            border-radius: 10px;
         }
 
+        /* Estilo del botón para que sea una X pequeña */
         .close-btn {
             position: absolute;
             top: 10px;
             right: 15px;
-            background-color: red;
-            color: white;
+            background-color: transparent;
+            color: #333;
             border: none;
-            padding: 5px 10px;
+            font-size: 24px;
             cursor: pointer;
-            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .close-btn:hover {
+            color: red;
         }
     </style>
 </head>
@@ -121,7 +130,7 @@
     <!-- Modal para mostrar el mapa agrandado -->
     <div id="modal" class="modal">
         <div class="modal-content">
-            <button class="close-btn" id="close-btn">Cerrar</button>
+            <button class="close-btn" id="close-btn">&times;</button>
             <iframe id="modal-iframe" src=""></iframe>
         </div>
     </div>
@@ -136,22 +145,22 @@
         document.querySelectorAll('.map-option').forEach(option => {
             option.addEventListener('click', function() {
                 const mapSrc = this.getAttribute('data-map-src');
-                modalIframe.src = mapSrc;  // Asignar la URL del iframe al modal
-                modal.style.display = 'flex';  // Mostrar el modal
+                modalIframe.src = mapSrc;
+                modal.style.display = 'flex';
             });
         });
 
         // Cerrar el modal cuando se presiona el botón de cerrar
         closeModalBtn.addEventListener('click', function() {
-            modal.style.display = 'none';  // Ocultar el modal
-            modalIframe.src = '';  // Limpiar el iframe
+            modal.style.display = 'none';
+            modalIframe.src = '';
         });
 
         // Cerrar el modal si se hace clic fuera del contenido del modal
         window.addEventListener('click', function(e) {
             if (e.target === modal) {
                 modal.style.display = 'none';
-                modalIframe.src = '';  // Limpiar el iframe
+                modalIframe.src = '';
             }
         });
     </script>
