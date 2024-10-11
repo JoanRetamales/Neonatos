@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f0f0f0;
+        }
+        h1 {
+            margin: 20px 0;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            max-width: 800px;
+        }
+        .map-option {
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            width: 300px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        iframe {
+            width: 100%;
+            height: 200px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Selecciona un Mapa</h1>
+    <div class="container">
+        <div class="map-option">
+            <h2>Mapa 1</h2>
+            <iframe src="tu_mapa_1.html"></iframe>
+        </div>
+        <div class="map-option">
+            <h2>Mapa 2</h2>
+            <iframe src="tu_mapa_2.html"></iframe>
+        </div>
+        <div class="map-option">
+            <h2>Mapa 3</h2>
+            <iframe src="tu_mapa_3.html"></iframe>
+        </div>
+        <div class="map-option">
+            <h2>Mapa 4</h2>
+            <iframe src="tu_mapa_4.html"></iframe>
+        </div>
+    </div>
+</body>
+</html>
