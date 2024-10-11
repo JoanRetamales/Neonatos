@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mapas</title>
+    <title>Mapas con Video de Fondo</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -12,26 +12,36 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            background-color: #1b1b1b;
-            background-image: url('/mnt/data/image.png'); /* Imagen de fondo */
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            /* Ocultamos el overflow para que el video no desborde */
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        /* Video de fondo a pantalla completa */
+        #video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover; /* Cubre toda la pantalla */
+            z-index: -1; /* Asegura que el video esté detrás del contenido */
         }
 
         h1 {
             margin: 20px 0;
             color: #ffffff;
+            z-index: 1; /* Asegura que el texto esté sobre el video */
         }
 
-        /* Mejora la distribución de los mapas */
         .container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Ajusta según el ancho de la pantalla */
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
             gap: 20px;
             width: 90%;
             max-width: 1200px;
             padding: 20px;
+            z-index: 1; /* Asegura que los mapas estén sobre el video */
         }
 
         .map-option {
@@ -43,9 +53,8 @@
             cursor: pointer;
         }
 
-        /* Reducimos el tamaño del título de cada mapa */
         .map-option h2 {
-            font-size: 16px; /* Tamaño reducido */
+            font-size: 16px;
             margin: 10px 0;
         }
 
@@ -55,18 +64,18 @@
             border: none;
         }
 
-        /* Estilos para centrar el último mapa */
+        /* Estilos para el mapa 5 centrado */
         .map-5 {
-            grid-column: 1 / -1; /* Hace que ocupe toda la fila */
+            grid-column: 1 / -1;
             display: flex;
             justify-content: center;
         }
 
         .map-5 iframe {
-            width: 90%; /* Ajuste para que el iframe del mapa 5 sea más pequeño */
+            width: 90%;
         }
 
-        /* Estilos para el modal */
+        /* Estilos del modal */
         .modal {
             display: none;
             position: fixed;
@@ -89,22 +98,20 @@
             height: 100%;
         }
 
-        /* Hacemos que el iframe cubra toda la pantalla */
         .modal-content iframe {
             width: 100%;
             height: 100%;
             border-radius: 10px;
         }
 
-        /* Estilo del botón para que sea una X más grande y mejor posicionada */
         .close-btn {
             position: absolute;
-            top: 25px;  /* Ajustamos para que esté más centrado */
-            right: 25px;
+            top: 70;
+            right: 70px;
             background-color: transparent;
             color: #fff;
             border: none;
-            font-size: 35px;  /* Aumentamos el tamaño de la X */
+            font-size: 35px;
             cursor: pointer;
             font-weight: bold;
         }
@@ -115,6 +122,14 @@
     </style>
 </head>
 <body>
+
+    <!-- Video de fondo -->
+    <video id="video-background" autoplay muted loop>
+        <source src="URL_DEL_VIDEO" type="video/mp4">
+        <!-- Mensaje alternativo en caso de que el video no cargue -->
+        Tu navegador no soporta la reproducción de videos en HTML5.
+    </video>
+
     <h1>Selecciona un Mapa</h1>
     <div class="container">
         <div class="map-option" data-map-src="HTML/Mapa calor causa 1.html">
@@ -133,14 +148,13 @@
             <h2>Mapa 4 Feto afectado por anomalías morfológicas y funcionales de la placenta</h2>
             <iframe src="HTML/Mapa calor causa 4.html"></iframe>
         </div>
-        <!-- Aplicamos la clase especial para centrar el mapa 5 -->
         <div class="map-option map-5" data-map-src="HTML/Mapa calor causa 5.html">
             <h2>Mapa 5 Feto afectado por complicaciones maternas del embarazo</h2>
             <iframe src="HTML/Mapa calor causa 5.html"></iframe>
         </div>
     </div>
 
-    <!-- Modal para mostrar el mapa agrandado -->
+    <!-- Modal para mostrar los mapas en tamaño completo -->
     <div id="modal" class="modal">
         <div class="modal-content">
             <button class="close-btn" id="close-btn">&times;</button>
@@ -149,12 +163,10 @@
     </div>
 
     <script>
-        // Obtener el modal y el botón de cierre
         const modal = document.getElementById('modal');
         const modalIframe = document.getElementById('modal-iframe');
         const closeModalBtn = document.getElementById('close-btn');
 
-        // Agregar evento de clic en cada mapa
         document.querySelectorAll('.map-option').forEach(option => {
             option.addEventListener('click', function() {
                 const mapSrc = this.getAttribute('data-map-src');
@@ -163,13 +175,11 @@
             });
         });
 
-        // Cerrar el modal cuando se presiona el botón de cerrar
         closeModalBtn.addEventListener('click', function() {
             modal.style.display = 'none';
             modalIframe.src = '';
         });
 
-        // Cerrar el modal si se hace clic fuera del contenido del modal
         window.addEventListener('click', function(e) {
             if (e.target === modal) {
                 modal.style.display = 'none';
