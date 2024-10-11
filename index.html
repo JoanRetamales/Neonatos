@@ -12,11 +12,22 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            background-color: #f0f0f0;
+            /* Aquí puedes elegir entre usar un color de fondo o una imagen */
+            /* Color de fondo */
+            background-color: #e0e0e0; /* Cambia este color si prefieres otro */
+
+            /* Imagen de fondo (opcional) */
+            background-image: url('ruta/a/tu-imagen.jpg'); /* Cambia la ruta de la imagen */
+            background-size: cover; /* Para que la imagen cubra todo el fondo */
+            background-position: center; /* Centrar la imagen de fondo */
+            background-attachment: fixed; /* Para que el fondo no se desplace al hacer scroll */
         }
+
         h1 {
             margin: 20px 0;
+            color: #333;
         }
+
         .container {
             display: flex;
             flex-wrap: wrap;
@@ -24,6 +35,7 @@
             gap: 20px;
             max-width: 800px;
         }
+
         .map-option {
             background: white;
             border: 1px solid #ccc;
@@ -31,37 +43,117 @@
             padding: 10px;
             width: 300px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
         }
+
         iframe {
             width: 100%;
             height: 200px;
             border: none;
+        }
+
+        /* Estilos para el modal */
+        .modal {
+            display: none; /* Oculto por defecto */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            position: relative;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .modal-content iframe {
+            width: 100%;
+            height: 500px; /* Tamaño del iframe en el modal */
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 16px;
         }
     </style>
 </head>
 <body>
     <h1>Selecciona un Mapa</h1>
     <div class="container">
-        <div class="map-option">
-            <h2>Mapa 1</h2>
+        <div class="map-option" data-map-src="HTML/Mapa calor causa 1.html">
+            <h2>Mapa 1 Hipoxia intrauterina no especificada</h2>
             <iframe src="HTML/Mapa calor causa 1.html"></iframe>
         </div>
-        <div class="map-option">
-            <h2>Mapa 2</h2>
+        <div class="map-option" data-map-src="HTML/Mapa calor causa 2.html">
+            <h2>Mapa 2 Muerte fetal de causa no especificada</h2>
             <iframe src="HTML/Mapa calor causa 2.html"></iframe>
         </div>
-        <div class="map-option">
-            <h2>Mapa 3</h2>
+        <div class="map-option" data-map-src="HTML/Mapa calor causa 3.html">
+            <h2>Mapa 3 Feto y recién nacido afectado por desprendimiento y hemorragia placentaria</h2>
             <iframe src="HTML/Mapa calor causa 3.html"></iframe>
         </div>
-        <div class="map-option">
-            <h2>Mapa 4</h2>
-            <iframe src="/HTML/Mapa calor causa 4.html"></iframe>
+        <div class="map-option" data-map-src="HTML/Mapa calor causa 4.html">
+            <h2>Mapa 4 Feto afectado por anomalías morfológicas y funcionales de la placenta</h2>
+            <iframe src="HTML/Mapa calor causa 4.html"></iframe>
         </div>
-        <div class="map-option">
-            <h2>Mapa 4</h2>
-            <iframe src="/HTML/Mapa calor causa 5.html"></iframe>
+        <div class="map-option" data-map-src="HTML/Mapa calor causa 5.html">
+            <h2>Mapa 5 Feto afectado por complicaciones maternas del embarazo</h2>
+            <iframe src="HTML/Mapa calor causa 5.html"></iframe>
         </div>
     </div>
+
+    <!-- Modal para mostrar el mapa agrandado -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" id="close-btn">Cerrar</button>
+            <iframe id="modal-iframe" src=""></iframe>
+        </div>
+    </div>
+
+    <script>
+        // Obtener el modal y el botón de cierre
+        const modal = document.getElementById('modal');
+        const modalIframe = document.getElementById('modal-iframe');
+        const closeModalBtn = document.getElementById('close-btn');
+
+        // Agregar evento de clic en cada mapa
+        document.querySelectorAll('.map-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const mapSrc = this.getAttribute('data-map-src');
+                modalIframe.src = mapSrc;  // Asignar la URL del iframe al modal
+                modal.style.display = 'flex';  // Mostrar el modal
+            });
+        });
+
+        // Cerrar el modal cuando se presiona el botón de cerrar
+        closeModalBtn.addEventListener('click', function() {
+            modal.style.display = 'none';  // Ocultar el modal
+            modalIframe.src = '';  // Limpiar el iframe
+        });
+
+        // Cerrar el modal si se hace clic fuera del contenido del modal
+        window.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+                modalIframe.src = '';  // Limpiar el iframe
+            }
+        });
+    </script>
 </body>
 </html>
