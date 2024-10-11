@@ -12,7 +12,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh; /* Ajustamos la altura al 100% del viewport */
+            height: 100vh; /* Ocupa el 100% del viewport */
             background-color: #1b1b1b;
             background-image: url('/mnt/data/image.png'); /* Imagen de fondo */
             background-size: cover;
@@ -23,7 +23,7 @@
         h1 {
             margin: 20px 0;
             color: #ffffff;
-            text-align: center; /* Aseguramos que el título esté centrado */
+            text-align: center; /* Asegura que el título esté centrado */
         }
 
         /* Contenedor centrado */
@@ -92,10 +92,10 @@
         /* Estilo del botón para que sea una X más grande y mejor posicionada */
         .close-btn {
             position: absolute;
-            top: 25px;
-            right: 25px;
+            top: 70px;
+            right: 70px;
             background-color: transparent;
-            color: #fff;
+            color: #000000;
             border: none;
             font-size: 35px;
             cursor: pointer;
@@ -104,6 +104,42 @@
 
         .close-btn:hover {
             color: red;
+        }
+
+        /* Media queries para pantallas más pequeñas (dispositivos móviles) */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                gap: 10px; /* Reducimos el espacio entre los mapas en pantallas pequeñas */
+                padding: 10px;
+            }
+
+            .map-option {
+                width: 100%; /* Los mapas ocupan todo el ancho disponible */
+            }
+
+            .map-option h2 {
+                font-size: 14px; /* Ajustamos el tamaño de texto para dispositivos móviles */
+            }
+
+            iframe {
+                height: 150px; /* Reducimos la altura de los iframes para pantallas pequeñas */
+            }
+        }
+
+        /* Media queries para pantallas muy pequeñas (móviles muy pequeños) */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 18px; /* Ajustamos el tamaño del título en pantallas muy pequeñas */
+            }
+
+            .map-option h2 {
+                font-size: 12px; /* Hacemos aún más pequeño el texto si es necesario */
+            }
+
+            iframe {
+                height: 120px; /* Reducimos más la altura del iframe para pantallas pequeñas */
+            }
         }
     </style>
 </head>
