@@ -26,12 +26,11 @@
 
         /* Mejora la distribución de los mapas */
         .container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Ajusta según el ancho de la pantalla */
-            gap: 20px;
-            width: 90%;
-            max-width: 1200px;
+            display: flex;
+            justify-content: center; /* Alinea al centro horizontalmente */
+            gap: 20px; /* Espacio entre los mapas */
             padding: 20px;
+            flex-wrap: wrap; /* Permite que los elementos se ajusten en una nueva fila si es necesario */
         }
 
         .map-option {
@@ -41,6 +40,7 @@
             padding: 10px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             cursor: pointer;
+            width: 220px; /* Asegura que todos los mapas tengan el mismo ancho */
         }
 
         /* Reducimos el tamaño del título de cada mapa */
