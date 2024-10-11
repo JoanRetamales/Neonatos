@@ -21,7 +21,7 @@
         }
 
         h1 {
-            margin: 120px 0;
+            margin: 80px 0; /* Reducir margen superior para pantallas pequeñas */
             color: #ffffff;
             text-align: left; /* Título alineado a la izquierda */
             width: 100%;
@@ -42,7 +42,7 @@
             background: white;
             border: 1px solid #ccc;
             border-radius: 5px;
-            padding: 10px;
+            padding: 15px; /* Aumenta el padding para mejor interacción táctil */
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             cursor: pointer;
             width: 250px; /* Aumenta el tamaño del mapa */
@@ -58,6 +58,8 @@
             width: 100%;
             height: 230px; /* Aumenta la altura del iframe */
             border: none;
+            max-width: 100%; /* Asegura que el iframe no exceda su contenedor */
+            height: auto; /* Mantiene la relación de aspecto */
         }
 
         /* Estilos para el modal */
@@ -92,18 +94,20 @@
         /* Estilo del botón para cerrar */
         .close-btn {
             position: absolute;
-            top: 70px;
-            right: 70px;
-            background-color: transparent;
-            color: #000000;
+            top: 70px; /* Posición ajustada */
+            right: 70px; /* Posición ajustada */
+            background-color: black; /* Color de fondo negro */
+            color: white; /* Color de texto blanco */
             border: none;
-            font-size: 45px;
+            padding: 10px 20px; /* Espaciado dentro del botón */
+            font-size: 16px; /* Tamaño de fuente */
             cursor: pointer;
-            font-weight: bold;
+            border-radius: 5px; /* Bordes redondeados */
+            transition: background-color 0.3s; /* Transición suave al cambiar de color */
         }
 
         .close-btn:hover {
-            color: red;
+            background-color: #444; /* Color de fondo al pasar el mouse */
         }
 
         /* Media queries para pantallas más pequeñas (dispositivos móviles) */
@@ -171,7 +175,7 @@
     <!-- Modal para mostrar el mapa agrandado -->
     <div id="modal" class="modal">
         <div class="modal-content">
-            <button class="close-btn" id="close-btn">&times;</button>
+            <button class="close-btn" id="close-btn">Cerrar</button> <!-- Cambiado a "Cerrar" -->
             <iframe id="modal-iframe" src=""></iframe>
         </div>
     </div>
