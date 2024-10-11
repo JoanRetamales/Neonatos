@@ -10,9 +10,9 @@
             margin: 0;
             padding: 0;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            height: 100vh; /* Ocupa el 100% del viewport */
+            height: 100vh;
             background-color: #1b1b1b;
             background-image: url('/mnt/data/image.png'); /* Imagen de fondo */
             background-size: cover;
@@ -23,18 +23,19 @@
         h1 {
             margin: 20px 0;
             color: #ffffff;
-            text-align: center; /* Asegura que el título esté centrado */
+            text-align: left; /* Título alineado a la izquierda */
+            width: 100%;
+            padding-left: 50px; /* Desplaza el título a la izquierda */
         }
 
-        /* Contenedor centrado */
+        /* Contenedor de mapas centrado */
         .container {
             display: flex;
-            justify-content: center; /* Alinea al centro horizontalmente */
+            justify-content: center;
             gap: 20px; /* Espacio entre los mapas */
             padding: 20px;
             flex-wrap: wrap; /* Permite que los elementos se ajusten en una nueva fila si es necesario */
-            max-width: 90%; /* Limita el ancho máximo del contenedor */
-            align-items: center; /* Centra los mapas verticalmente */
+            max-width: 95%; /* Limita el ancho máximo del contenedor */
         }
 
         .map-option {
@@ -44,7 +45,7 @@
             padding: 10px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             cursor: pointer;
-            width: 220px; /* Asegura que todos los mapas tengan el mismo ancho */
+            width: 250px; /* Aumenta el tamaño del mapa */
             text-align: center;
         }
 
@@ -55,7 +56,7 @@
 
         iframe {
             width: 100%;
-            height: 200px;
+            height: 230px; /* Aumenta la altura del iframe */
             border: none;
         }
 
@@ -82,20 +83,19 @@
             height: 100%;
         }
 
-        /* Hacemos que el iframe cubra toda la pantalla */
         .modal-content iframe {
             width: 100%;
             height: 100%;
             border-radius: 10px;
         }
 
-        /* Estilo del botón para que sea una X más grande y mejor posicionada */
+        /* Estilo del botón para cerrar */
         .close-btn {
             position: absolute;
-            top: 70px;
-            right: 70px;
+            top: 25px;
+            right: 25px;
             background-color: transparent;
-            color: #000000;
+            color: #fff;
             border: none;
             font-size: 35px;
             cursor: pointer;
